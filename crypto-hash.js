@@ -2,7 +2,7 @@ const crypto = require("crypto");
 
 const cryptoHash = (...args) => {
   return crypto
-    .createHash("sha256")
+    .createHash("sha3-512")
     .update(args.sort().join(" "))
     .digest("hex");
 };
