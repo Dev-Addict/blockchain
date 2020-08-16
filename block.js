@@ -1,5 +1,6 @@
 const { GENESIS_DATA, MINE_RATE } = require("./config");
 const cryptoHash = require("./crypto-hash");
+const hexbin = require("./hexbin");
 
 class Block {
   static genesis() {
@@ -7,21 +8,31 @@ class Block {
   }
 
   static adjustDifficulty({ block: { difficulty, ...block }, timestamp }) {
-    if (timestamp - block.timestamp > MINE_RATE) return difficulty - 1;
+    let finalDifficulty = difficulty + 1;
 
-    return difficulty + 1;
+    if (timestamp - block.timestamp > MINE_RATE)
+      finalDifficulty = difficulty - 1;
+
+    if (finalDifficulty < 1) {
+      return 1;
+    }
+
+    return finalDifficulty;
   }
 
-  static mineBlock({ lastBlock: { difficulty, ...lastBlock }, data }) {
+  static mineBlock({ lastBlock, data }) {
     let hash, timestamp;
+
+    let { difficulty } = lastBlock;
 
     let nonce = 0;
 
     do {
       nonce++;
       timestamp = Date.now();
+      difficulty = Block.adjustDifficulty({ block: lastBlock, timestamp });
       hash = cryptoHash(timestamp, lastBlock.hash, data, nonce, difficulty);
-    } while (!/^0*$/.test(hash.substring(0, difficulty)));
+    } while (!/^0*$/.test(hexbin(hash).substring(0, difficulty)));
 
     return new this({
       timestamp,

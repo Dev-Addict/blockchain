@@ -1,4 +1,5 @@
 const crypto = require("crypto");
+const hexbin = require("./hexbin");
 
 const cryptoHash = (...args) => {
   return crypto

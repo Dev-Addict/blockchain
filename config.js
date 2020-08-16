@@ -1,6 +1,6 @@
 exports.MINE_RATE = 1000;
 
-exports.INITIAL_DIFFICULTY = 3;
+exports.INITIAL_DIFFICULTY = 18;
 
 exports.GENESIS_DATA = {
   timestamp: 0,
