@@ -41,6 +41,8 @@ class Blockchain {
     });
 
     this.chain.push(block);
+
+    return block;
   }
 
   isChainValid() {
