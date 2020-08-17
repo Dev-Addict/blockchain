@@ -1,3 +1,10 @@
+const path = require("path");
+const dotenv = require("dotenv");
+
+dotenv.config({
+  path: path.join(__dirname, "./config.env"),
+});
+
 const express = require("express");
 
 const Blockchain = require("./blockchain");
@@ -48,6 +55,8 @@ app.post("/api/v1/blocks", (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log("> Ready on port 3000.");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`|> Ready on port ${PORT}.`);
 });
