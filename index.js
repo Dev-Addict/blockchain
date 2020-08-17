@@ -6,10 +6,15 @@ dotenv.config({
 });
 
 const express = require("express");
+const request = require("request");
 
 const Blockchain = require("./blockchain");
 const PubSub = require("./pubsub");
 const CHANNELS = require("./channels");
+
+const PORT = process.env.PORT || 3000;
+
+const ROOT_NODE_ADDRESS = `http://127.0.0.1:${PORT}`;
 
 const app = express();
 
@@ -55,8 +60,18 @@ app.post("/api/v1/blocks", (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 3000;
+const syncChains = () => {
+  request({ url: `${ROOT_NODE_ADDRESS}/api/blocks` }, (err, res, body) => {
+    if (!err && res.statusCode === 200) {
+      const rootChain = JSON.parse(body);
+
+      blockchain.replaceChain(rootChain);
+    }
+  });
+};
 
 app.listen(PORT, () => {
   console.log(`|> Ready on port ${PORT}.`);
+
+  syncChains();
 });
