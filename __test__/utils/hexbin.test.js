@@ -1,4 +1,4 @@
-const hexbin = require("../hexbin");
+const hexbin = require("../../utils/hexbin");
 
 describe("hexbin()", () => {
   it("Returns valid binary number from hex number.", () => {

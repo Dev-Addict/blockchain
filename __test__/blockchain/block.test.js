@@ -1,8 +1,7 @@
-const Block = require("../block");
-const { GENESIS_DATA, MINE_RATE } = require("../config");
-const cryptoHash = require("../crypto-hash");
-const Blockchain = require("../blockchain");
-const hexbin = require("../hexbin");
+const Block = require("../../blockchain/block");
+const { GENESIS_DATA, MINE_RATE } = require("../../config");
+const cryptoHash = require("../../utils/crypto-hash");
+const hexbin = require("../../utils/hexbin");
 
 describe("Block", () => {
   const timestamp = Date.now();

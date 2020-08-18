@@ -1,6 +1,6 @@
-const { GENESIS_DATA, MINE_RATE } = require("./config");
-const cryptoHash = require("./crypto-hash");
-const hexbin = require("./hexbin");
+const { GENESIS_DATA, MINE_RATE } = require("../config");
+const cryptoHash = require("../utils/crypto-hash");
+const hexbin = require("../utils/hexbin");
 
 class Block {
   static genesis() {

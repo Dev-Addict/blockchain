@@ -10,8 +10,8 @@ const express = require("express");
 const request = require("request");
 
 const Blockchain = require("./blockchain");
-const PubSub = require("./pubsub");
-const CHANNELS = require("./channels");
+const PubSub = require("./utils/pubsub");
+const CHANNELS = require("./data/channels");
 
 let PORT = process.env.PORT || 3000;
 

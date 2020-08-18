@@ -1,7 +1,5 @@
 const redis = require("redis");
 
-const CHANNELS = require("./channels");
-
 class PubSub {
   constructor({ channel, blockchain, messageHandler }) {
     this.channel = channel;
