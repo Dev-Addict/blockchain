@@ -7,6 +7,9 @@
     "test": "jest --watchAll",
     "start": "nodemon index.js"
   },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -15,6 +18,7 @@
   },
   "dependencies": {
     "dotenv": "^8.2.0",
+    "elliptic": "^6.5.3",
     "express": "^4.17.1",
     "redis": "^2.8.0",
     "request": "^2.88.2"

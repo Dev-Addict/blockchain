@@ -10,3 +10,5 @@ exports.GENESIS_DATA = {
   difficulty: this.INITIAL_DIFFICULTY,
   nonce: 1,
 };
+
+exports.STARTING_BALANCE = 1000;
